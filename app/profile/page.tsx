@@ -1,0 +1,275 @@
+"use client"
+
+import { useState } from "react"
+import { useAuth } from "@/contexts/auth-context"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
+import { Separator } from "@/components/ui/separator"
+import { Badge } from "@/components/ui/badge"
+import { User, Mail, Building2, Phone, MapPin, Shield, Bell, Eye, Lock } from "lucide-react"
+
+export default function ProfilePage() {
+  const { user } = useAuth()
+  const [isEditing, setIsEditing] = useState(false)
+
+  return (
+    <div className="space-y-6">
+      {/* Profile Header */}
+      <Card className="bg-gradient-to-br from-white to-sky-50/30 dark:from-gray-800 dark:to-gray-700/50 border-sky-200/50 dark:border-gray-600">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 bg-gradient-to-br from-sky-500 to-sky-600 dark:from-sky-600 dark:to-sky-700 rounded-full flex items-center justify-center shadow-lg">
+                <User className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <CardTitle className="text-2xl text-gray-900 dark:text-gray-100">{user?.email}</CardTitle>
+                <div className="flex items-center gap-2 mt-1">
+                  <Badge className="capitalize bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-300">{user?.role}</Badge>
+                  <Badge variant="outline" className="border-green-200 text-green-700 dark:border-green-700 dark:text-green-400">Active</Badge>
+                </div>
+              </div>
+            </div>
+            <Button variant={isEditing ? "outline" : "default"} onClick={() => setIsEditing(!isEditing)} className="border-sky-200 dark:border-sky-700 hover:bg-sky-50 dark:hover:bg-sky-900/20">
+              {isEditing ? "Cancel" : "Edit Profile"}
+            </Button>
+          </div>
+        </CardHeader>
+      </Card>
+
+      {/* Account Information */}
+      <Card className="bg-gradient-to-br from-white to-sky-50/30 dark:from-gray-800 dark:to-gray-700/50 border-sky-200/50 dark:border-gray-600">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <User className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+            <CardTitle className="text-gray-900 dark:text-gray-100">Account Information</CardTitle>
+          </div>
+          <CardDescription className="text-gray-600 dark:text-gray-300">Manage your account details and preferences</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-2">
+              <Label htmlFor="full-name" className="text-gray-700 dark:text-gray-300">Full Name</Label>
+              <div className="relative">
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground dark:text-gray-400" />
+                <Input
+                  id="full-name"
+                  placeholder="John Doe"
+                  className="pl-9 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  disabled={!isEditing}
+                  defaultValue="John Doe"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-gray-700 dark:text-gray-300">Email Address</Label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground dark:text-gray-400" />
+                <Input id="email" type="email" className="pl-9 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" disabled value={user?.email || ""} />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="company" className="text-gray-700 dark:text-gray-300">Company Name</Label>
+              <div className="relative">
+                <Building2 className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground dark:text-gray-400" />
+                <Input
+                  id="company"
+                  placeholder="D&D Control (M) Sdn. Bhd."
+                  className="pl-9 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  disabled={!isEditing}
+                  defaultValue="D&D Control (M) Sdn. Bhd."
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="phone" className="text-gray-700 dark:text-gray-300">Phone Number</Label>
+              <div className="relative">
+                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground dark:text-gray-400" />
+                <Input
+                  id="phone"
+                  placeholder="+60 12-345 6789"
+                  className="pl-9 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  disabled={!isEditing}
+                  defaultValue="+60 12-345 6789"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2 md:col-span-2">
+              <Label htmlFor="address" className="text-gray-700 dark:text-gray-300">Address</Label>
+              <div className="relative">
+                <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground dark:text-gray-400" />
+                <Input
+                  id="address"
+                  placeholder="123 Business Street, Kuala Lumpur"
+                  className="pl-9 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+                  disabled={!isEditing}
+                  defaultValue="123 Business Street, Kuala Lumpur, Malaysia"
+                />
+              </div>
+            </div>
+          </div>
+
+          {isEditing && (
+            <div className="flex gap-2 pt-4">
+              <Button className="bg-sky-600 hover:bg-sky-700 dark:bg-sky-500 dark:hover:bg-sky-600">Save Changes</Button>
+              <Button variant="outline" onClick={() => setIsEditing(false)} className="border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                Cancel
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Security Settings */}
+      <Card className="bg-gradient-to-br from-white to-sky-50/30 dark:from-gray-800 dark:to-gray-700/50 border-sky-200/50 dark:border-gray-600">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Shield className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+            <CardTitle className="text-gray-900 dark:text-gray-100">Security Settings</CardTitle>
+          </div>
+          <CardDescription className="text-gray-600 dark:text-gray-300">Manage your password and security preferences</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <div className="flex items-center gap-2">
+                <Lock className="h-4 w-4 text-muted-foreground dark:text-gray-400" />
+                <Label className="text-gray-700 dark:text-gray-300">Password</Label>
+              </div>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Last changed 30 days ago</p>
+            </div>
+            <Button variant="outline" className="border-sky-200 dark:border-sky-700 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-sky-900/20">Change Password</Button>
+          </div>
+
+          <Separator className="bg-gray-200 dark:bg-gray-600" />
+
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label htmlFor="two-factor" className="text-gray-700 dark:text-gray-300">Two-Factor Authentication</Label>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Add an extra layer of security to your account</p>
+            </div>
+            <Switch id="two-factor" />
+          </div>
+
+          <Separator className="bg-gray-200 dark:bg-gray-600" />
+
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label htmlFor="session-timeout" className="text-gray-700 dark:text-gray-300">Auto Logout</Label>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Automatically logout after 30 minutes of inactivity</p>
+            </div>
+            <Switch id="session-timeout" defaultChecked />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Notification Preferences */}
+      <Card className="bg-gradient-to-br from-white to-sky-50/30 dark:from-gray-800 dark:to-gray-700/50 border-sky-200/50 dark:border-gray-600">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Bell className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+            <CardTitle className="text-gray-900 dark:text-gray-100">Notification Preferences</CardTitle>
+          </div>
+          <CardDescription className="text-gray-600 dark:text-gray-300">Choose how you want to be notified</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label htmlFor="email-notifications" className="text-gray-700 dark:text-gray-300">Email Notifications</Label>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Receive notifications via email</p>
+            </div>
+            <Switch id="email-notifications" defaultChecked />
+          </div>
+
+          <Separator className="bg-gray-200 dark:bg-gray-600" />
+
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label htmlFor="sms-notifications" className="text-gray-700 dark:text-gray-300">SMS Notifications</Label>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Receive critical alerts via SMS</p>
+            </div>
+            <Switch id="sms-notifications" />
+          </div>
+
+          <Separator className="bg-gray-200 dark:bg-gray-600" />
+
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label htmlFor="weekly-summary" className="text-gray-700 dark:text-gray-300">Weekly Summary</Label>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Receive a weekly summary of your account activity</p>
+            </div>
+            <Switch id="weekly-summary" defaultChecked />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Display Preferences */}
+      <Card className="bg-gradient-to-br from-white to-sky-50/30 dark:from-gray-800 dark:to-gray-700/50 border-sky-200/50 dark:border-gray-600">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Eye className="h-5 w-5 text-sky-600 dark:text-sky-400" />
+            <CardTitle className="text-gray-900 dark:text-gray-100">Display Preferences</CardTitle>
+          </div>
+          <CardDescription className="text-gray-600 dark:text-gray-300">Customize how you view the dashboard</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label htmlFor="dark-mode" className="text-gray-700 dark:text-gray-300">Dark Mode</Label>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Switch to dark theme</p>
+            </div>
+            <Switch id="dark-mode" />
+          </div>
+
+          <Separator className="bg-gray-200 dark:bg-gray-600" />
+
+          <div className="flex items-center justify-between">
+            <div className="space-y-0.5">
+              <Label htmlFor="compact-view" className="text-gray-700 dark:text-gray-300">Compact View</Label>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Show more information in less space</p>
+            </div>
+            <Switch id="compact-view" />
+          </div>
+
+          <Separator className="bg-gray-200 dark:bg-gray-600" />
+
+          <div className="space-y-2">
+            <Label htmlFor="language" className="text-gray-700 dark:text-gray-300">Language</Label>
+            <Input id="language" defaultValue="English" disabled className="border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Account Statistics */}
+      <Card className="bg-gradient-to-br from-white to-sky-50/30 dark:from-gray-800 dark:to-gray-700/50 border-sky-200/50 dark:border-gray-600">
+        <CardHeader>
+          <CardTitle className="text-gray-900 dark:text-gray-100">Account Statistics</CardTitle>
+          <CardDescription className="text-gray-600 dark:text-gray-300">Your activity summary</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Member Since</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">Jan 2024</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Total Transactions</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">142</p>
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm text-muted-foreground dark:text-gray-400">Total Amount</p>
+              <p className="text-2xl font-bold text-gray-900 dark:text-gray-100">RM 584,350</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
