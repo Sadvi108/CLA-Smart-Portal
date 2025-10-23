@@ -152,7 +152,7 @@ export default function LoginPage() {
 
   return (
     <TooltipProvider>
-      <div className="min-h-screen flex overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300 pb-24 md:pb-28">
+      <div className="min-h-screen flex overflow-hidden bg-gradient-to-br from-sky-50 to-white dark:bg-gray-900 transition-colors duration-300 pb-24 md:pb-28">
         {/* Dark Mode Toggle */}
         <div className="absolute top-6 right-6 z-50">
           <Button
@@ -291,7 +291,7 @@ export default function LoginPage() {
                                     setBranch(currentValue === branch ? "" : currentValue)
                                     setBranchOpen(false)
                                   }}
-                                  className="text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                                  className="text-gray-900 dark:text-white hover:bg-sky-50 dark:hover:bg-gray-700"
                                 >
                                   <Check
                                     className={`mr-2 h-4 w-4 ${

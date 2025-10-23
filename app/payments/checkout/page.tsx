@@ -894,31 +894,3 @@ export default function PaymentCheckoutPage() {
     </div>
   )
 }
-
-
-// Form validation states
-// ... existing code ...
-
-const validateForm = () => {
-  const newErrors: {[key: string]: string} = {}
-  
-  if (selectedIds.length === 0) {
-    newErrors.invoices = 'Please select at least one invoice to pay'
-  }
-  
-  newErrors.payer = validateField('payer', payer)
-  newErrors.bank = validateField('bank', bank)
-  newErrors.referenceNo = validateField('referenceNo', referenceNo)
-  newErrors.amount = validateField('amount', amount)
-
-  setErrors(newErrors)
-  setTouched({
-    invoices: true,
-    payer: true,
-    bank: true,
-    referenceNo: true,
-    amount: true
-  })
-
-  return Object.values(newErrors).every(error => !error)
-}

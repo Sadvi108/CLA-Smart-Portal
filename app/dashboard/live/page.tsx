@@ -114,7 +114,7 @@ export default function LiveActivityPage() {
       </div>
 
       {/* Tracking status */}
-      <Card className="border-0 bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-800 dark:to-gray-700/50">
+      <Card className="border-0 bg-white dark:from-gray-800 dark:to-gray-700/50">
         <CardHeader>
           <CardTitle>Container Release Tracking</CardTitle>
         </CardHeader>
@@ -159,10 +159,10 @@ export default function LiveActivityPage() {
               {/* route line */}
               <path d="M40 220 C 200 160, 400 120, 760 80" stroke="url(#route)" strokeWidth="4" fill="none" />
               {/* ports */}
-              <circle cx="40" cy="220" r="6" className="fill-sky-500" />
-              <circle cx="760" cy="80" r="6" className="fill-sky-500" />
+              <circle cx="40" cy="220" r="6" style={{fill: '#007BFF'}} />
+              <circle cx="760" cy="80" r="6" style={{fill: '#007BFF'}} />
               {/* moving dot */}
-              <circle cx={40 + (progress/100) * (760-40)} cy={220 - (progress/100) * (220-80)} r="7" className="fill-sky-400" />
+              <circle cx={40 + (progress/100) * (760-40)} cy={220 - (progress/100) * (220-80)} r="7" style={{fill: '#007BFF', opacity: 0.8}} />
             </svg>
             <div className="absolute left-2 bottom-2 flex items-center gap-2 text-xs text-muted-foreground">
               <MapPin className="w-3 h-3" />
@@ -176,7 +176,7 @@ export default function LiveActivityPage() {
       </Card>
 
       {/* Live event stream */}
-      <Card className="border-0 bg-gradient-to-br from-white to-gray-50/50 dark:from-gray-800 dark:to-gray-700/50">
+      <Card className="border-0 bg-white dark:from-gray-800 dark:to-gray-700/50">
         <CardHeader>
           <CardTitle>Live Event Stream</CardTitle>
         </CardHeader>
@@ -187,13 +187,15 @@ export default function LiveActivityPage() {
                 <div key={activity.id} className="group flex gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${
                     activity.type === 'payment' ? 'bg-green-100 dark:bg-green-900/30' :
-                    activity.type === 'invoice' ? 'bg-blue-100 dark:bg-blue-900/30' :
+                    activity.type === 'invoice' ? 'dark:bg-blue-900/30' :
                     'bg-red-100 dark:bg-red-900/30'
-                  }`}>
+                  }`}
+                  style={activity.type === 'invoice' ? {backgroundColor: '#007BFF', opacity: 0.1} : {}}
+                  >
                     {activity.type === 'payment' ? (
                       <CreditCard className="w-5 h-5 text-green-600 dark:text-green-400" />
                     ) : activity.type === 'invoice' ? (
-                      <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      <FileText className="w-5 h-5" style={{color: '#007BFF'}} />
                     ) : (
                       <AlertTriangle className="w-5 h-5 text-red-600 dark:text-red-400" />
                     )}

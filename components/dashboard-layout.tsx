@@ -61,7 +61,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   }, [sidebarOpen])
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div 
@@ -74,20 +74,20 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 z-50 h-full w-64 bg-gradient-to-b from-sky-50 to-white dark:from-gray-800 dark:to-gray-900 border-r border-sky-200 dark:border-gray-700 shadow-xl transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:z-50",
+          "fixed top-0 left-0 z-50 h-full w-64 bg-white dark:from-gray-800 dark:to-gray-900 border-r border-gray-200 dark:border-gray-700 shadow-sm transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:z-50",
           sidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         <div className="flex flex-col h-full">
           {/* Logo and close button */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-sky-200 dark:border-gray-700 bg-gradient-to-r from-sky-600 to-sky-700 dark:from-gray-700 dark:to-gray-800">
+          <div className="flex items-center justify-between px-6 py-5 border-b border-gray-200 dark:border-gray-700" style={{backgroundColor: '#007BFF'}}>
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 dark:bg-white/10 rounded-lg flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-white" />
               </div>
               <div>
                 <h1 className="font-bold text-lg text-white">CLA Portal</h1>
-                <p className="text-xs text-sky-100 dark:text-gray-300">D&D Control</p>
+                <p className="text-xs text-blue-100 dark:text-gray-300">D&D Control</p>
               </div>
             </div>
             {/* Close button for mobile */}
@@ -102,7 +102,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto">
+          <nav className="flex-1 px-4 py-6 space-y-1 overflow-y-auto bg-white dark:bg-gray-800">
             {navigation.map((item) => {
               const isActive = pathname === item.href
               return (
@@ -113,14 +113,17 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   className={cn(
                     "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 group",
                     isActive 
-                      ? "bg-gradient-to-r from-sky-500 to-sky-600 dark:from-sky-600 dark:to-sky-700 text-white shadow-lg transform scale-105" 
-                      : "text-gray-700 dark:text-gray-300 hover:bg-sky-50 dark:hover:bg-gray-700 hover:text-sky-700 dark:hover:text-sky-400 hover:scale-105 hover:shadow-md",
+                      ? "text-white shadow-sm transform scale-105" 
+                      : "text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:scale-105",
                   )}
+                  style={isActive ? {backgroundColor: '#007BFF'} : {}}
                 >
                   <item.icon className={cn(
                     "w-5 h-5 transition-all duration-200",
-                    isActive ? "text-white" : "text-gray-500 dark:text-gray-400 group-hover:text-sky-600 dark:group-hover:text-sky-400"
-                  )} />
+                    isActive ? "text-white" : "text-gray-500 dark:text-gray-400"
+                  )} 
+                  style={!isActive ? {color: '#007BFF'} : {}}
+                  />
                   {item.name}
                 </Link>
               )
@@ -128,20 +131,21 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
           </nav>
 
           {/* User info & logout */}
-          <div className="p-4 border-t border-sky-200 dark:border-gray-700 bg-gradient-to-r from-sky-50 to-sky-100/50 dark:from-gray-800 dark:to-gray-700/50">
-            <div className="flex items-center gap-3 px-4 py-3 mb-2 bg-white/80 dark:bg-gray-800/80 rounded-lg shadow-sm border border-sky-200/50 dark:border-gray-600/50">
-              <div className="w-8 h-8 bg-gradient-to-r from-sky-500 to-sky-600 dark:from-sky-600 dark:to-sky-700 rounded-full flex items-center justify-center shadow-md">
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+            <div className="flex items-center gap-3 px-4 py-3 mb-2 bg-white dark:bg-gray-800/80 rounded-lg border border-gray-200 dark:border-gray-600/50">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{backgroundColor: '#007BFF'}}>
                 <User className="w-4 h-4 text-white" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{user?.email}</p>
-                <p className="text-xs text-sky-600 dark:text-sky-400 capitalize font-medium">{user?.role}</p>
+                <p className="text-xs capitalize font-medium" style={{color: '#007BFF'}}>{user?.role}</p>
               </div>
             </div>
             <Button 
               variant="outline" 
-              className="w-full justify-start gap-2 bg-white/80 dark:bg-gray-800/80 border-sky-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-sky-50 dark:hover:bg-gray-700 hover:text-sky-700 dark:hover:text-sky-400 hover:border-sky-300 dark:hover:border-sky-500 transition-all duration-200" 
+              className="w-full justify-start gap-2 bg-white dark:bg-gray-800/80 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200" 
               onClick={logout}
+              style={{'--hover-color': '#007BFF'} as React.CSSProperties}
             >
               <LogOut className="w-4 h-4" />
               Logout
@@ -153,7 +157,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top bar */}
-        <header className="sticky top-0 z-40 bg-gradient-to-r from-sky-600 via-sky-700 to-sky-800 dark:from-gray-800 dark:via-gray-900 dark:to-gray-950 border-b border-sky-800/20 dark:border-gray-700/50 shadow-lg lg:z-40">
+        <header className="sticky top-0 z-40 border-b border-gray-200 dark:border-gray-700/50 shadow-sm lg:z-40" style={{backgroundColor: '#007BFF'}}>
           <div className="flex items-center justify-between px-4 py-4 lg:px-8">
             <div className="flex items-center gap-4">
               <Button 
@@ -169,7 +173,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
               </h2>
             </div>
             <div className="flex items-center gap-4">
-              <div className="text-sm text-sky-100 dark:text-gray-300 hidden sm:block">
+              <div className="text-sm text-blue-100 dark:text-gray-300 hidden sm:block">
                 {typeof window !== 'undefined' && new Date().toLocaleDateString("en-US", {
                   weekday: "short",
                   year: "numeric",
@@ -188,7 +192,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page content */}
-        <main className="p-4 lg:p-8 min-h-[calc(100vh-73px)]">{children}</main>
+        <main className="p-4 lg:p-8 min-h-[calc(100vh-73px)] bg-white dark:bg-gray-900">{children}</main>
       </div>
     </div>
   )

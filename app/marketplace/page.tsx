@@ -245,7 +245,7 @@ export default function MarketplacePage() {
                 placeholder="Search services..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-300"
+                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-xl focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-300"
               />
             </div>
             
@@ -288,7 +288,7 @@ export default function MarketplacePage() {
             return (
               <Card 
                 key={service.id}
-                className={`group relative overflow-hidden ${service.bgColor} ${service.borderColor} border-2 hover:shadow-2xl hover:shadow-sky-500/10 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer`}
+                className={`group relative overflow-hidden ${service.bgColor} ${service.borderColor} border-2 hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer`}
                 style={{
                   animationDelay: `${index * 100}ms`
                 }}
@@ -310,7 +310,7 @@ export default function MarketplacePage() {
                   {/* Content */}
                   <div className="space-y-2">
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors duration-300">
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                         {service.title}
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
@@ -326,7 +326,7 @@ export default function MarketplacePage() {
                   <div className="space-y-2">
                     {service.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-2">
-                        <Zap className="h-3 w-3 text-sky-500" />
+                        <Zap className="h-3 w-3 text-blue-500" />
                         <span className="text-xs text-gray-600 dark:text-gray-400">{feature}</span>
                       </div>
                     ))}
@@ -339,7 +339,7 @@ export default function MarketplacePage() {
                       <span className="text-sm text-gray-600 dark:text-gray-400">{service.users} users</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge variant="secondary" className="text-xs bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800">
+                      <Badge variant="secondary" className="text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800">
                         Available
                       </Badge>
                       <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color} animate-pulse`} />
@@ -347,7 +347,7 @@ export default function MarketplacePage() {
                   </div>
 
                   {/* Hover Effect Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-sky-500/5 to-sky-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 </CardContent>
               </Card>
             )

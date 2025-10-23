@@ -13,9 +13,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'CLA Portal',
+  description: 'Streamline Landing Portal',
+  generator: 'Next.js',
 }
 
 export default function RootLayout({
@@ -24,19 +24,20 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="en" suppressHydrationWarning className={inter.variable}>
+      <body className="font-sans antialiased min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white">
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+          defaultTheme="light"
+          enableSystem={true}
+          disableTransitionOnChange={false}
         >
           <AuthProvider>
-            {children}
+            <div className="min-h-screen">
+              {children}
+            </div>
           </AuthProvider>
         </ThemeProvider>
-        {/* Global floating chat widget */}
         <ChatWidget />
         <Analytics />
       </body>

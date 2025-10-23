@@ -62,11 +62,11 @@ export default function ReloadPage() {
         </div>
 
         {/* Current Balance Card */}
-        <Card className="bg-gradient-to-r from-sky-600 to-sky-700 dark:from-sky-600 dark:to-sky-700 border-0 text-white">
+        <Card className="bg-blue-600 dark:bg-blue-600 border-0 text-white">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sky-100 text-sm mb-1">Current Balance</p>
+                <p className="text-blue-100 text-sm mb-1">Current Balance</p>
                 <p className="text-3xl font-bold">RM {currentBalance.toFixed(2)}</p>
               </div>
               <div className="bg-white/20 p-3 rounded-full">
@@ -103,7 +103,7 @@ export default function ReloadPage() {
                     key={amount}
                     variant="outline"
                     onClick={() => handleQuickSelect(amount)}
-                    className="h-12 text-base border-gray-200 dark:border-gray-600 dark:text-gray-200 hover:bg-sky-50 dark:hover:bg-sky-900/20 hover:border-sky-300 dark:hover:border-sky-600"
+                    className="h-12 text-base border-gray-200 dark:border-gray-600 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
                   >
                     RM {amount.toLocaleString()}
                   </Button>
@@ -159,7 +159,7 @@ export default function ReloadPage() {
             <Button
               onClick={handleReload}
               disabled={!reloadAmount || !selectedPaymentMethod || isLoading}
-              className="w-full h-12 text-base bg-gradient-to-r from-sky-600 to-sky-700 dark:from-sky-600 dark:to-sky-700 hover:from-sky-700 hover:to-sky-800 dark:hover:from-sky-700 dark:hover:to-sky-800 disabled:opacity-50"
+              className="w-full h-12 text-base bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
             >
               {isLoading ? "Processing..." : "Confirm Reload"}
             </Button>

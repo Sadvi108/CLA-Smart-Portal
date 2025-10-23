@@ -122,6 +122,3 @@ export {
   PaginationNext,
   PaginationEllipsis,
 }
-  PaginationNext,
-  PaginationEllipsis,
-}

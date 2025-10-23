@@ -232,7 +232,7 @@ export default function ProfilePage() {
 
           <div className="flex items-center justify-between">
             <div className="space-y-0.5">
-              <Label htmlFor="compact-view" className="text-gray-700 dark:text-gray-300">Compact View</Label>
+              <Label htmlFor="compact-view" className="text-gray-700 dark:text-gray-300">Compact Mode</Label>
               <p className="text-sm text-muted-foreground dark:text-gray-400">Show more information in less space</p>
             </div>
             <Switch id="compact-view" />
